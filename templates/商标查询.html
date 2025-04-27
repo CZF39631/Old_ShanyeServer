@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商标查询</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/商标库.css') }}">
+    <script src="{{ url_for('static', filename='js/商标库.js') }}" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>商标查询</h1>
+
+    <div class="切换按钮">
+        <button data-mode="商标" onclick="切换搜索模式('商标')">商标搜索</button>
+        <button data-mode="申请号" onclick="切换搜索模式('申请号')">申请号搜索</button>
+        <button data-mode="新增商标" onclick="切换搜索模式('新增商标')">新增商标</button>
+    </div>
+
+    <div class="搜索模式-商标">
+        <form id="商标查询表单" onsubmit="return 执行商标查询();">
+            <div>
+                <label for="商标名">商标名:</label>
+                <input type="text" id="商标名" name="商标名" placeholder="输入商标名" value="{{ 商标名 }}"/>
+            </div>
+
+            <div>
+                <label for="小类关键字">小类关键字:</label>
+                <input type="text" id="小类关键字" name="小类关键字" placeholder="输入小类关键字"
+                       value="{{ 小类关键字 }}"/>
+            </div>
+
+            <input type="hidden" name="当前页" value="{{ 当前页 | default(1) }}"/>
+            <input type="hidden" name="每页数量" value="{{ 每页数量 | default(10) }}"/>
+
+            <button type="button" onclick="重置页码('商标')">查询商标</button>
+        </form>
+    </div>
+
+    <div class="搜索模式-申请号" style="display: none;">
+        <form id="申请号查询表单" onsubmit="return 执行申请号查询();">
+            <div>
+                <label for="申请号">申请号:</label>
+                <input type="text" id="申请号" name="申请号" placeholder="输入申请号" value="{{ 申请号 }}"/>
+            </div>
+
+            <input type="hidden" name="当前页" value="{{ 当前页 | default(1) }}"/>
+            <input type="hidden" name="每页数量" value="{{ 每页数量 | default(10) }}"/>
+
+            <button type="button" onclick="重置页码('申请号')">查询申请号</button>
+        </form>
+    </div>
+
+    <div class="搜索模式-新增商标" style="display: none;">
+        <form id="新增商标表单" onsubmit="return false;">
+            <div>
+                <label for="申请号-新增">申请号:</label>
+                <input type="text" id="申请号-新增" name="申请号-新增" placeholder="请输入申请号">
+            </div>
+
+            <!-- 新增用户名输入框 -->
+            <div>
+                <label for="用户名">用户名:</label>
+                <input type="text" id="用户名" name="用户名" placeholder="请输入用户名">
+            </div>
+
+            <button type="button" onclick="执行新增商标(event)">提交</button>
+        </form>
+    </div>
+
+
+    <p>当前查询共找到 <strong>{{ 查询结果数量 }}</strong> 条记录</p>
+
+    <div id="查询结果">
+        {% for 商标 in 查询结果 %}
+        <div class="商标条目">
+            <img class="商标图" src="{{ 商标[0] }}" alt="{{ 商标[1] }}商标图"/>
+            <div class="商标信息">
+                <h3>{{ 商标[1] }}</h3>
+                <p>申请人: {{ 商标[2] }}</p>
+                <p>申请号: <span class="申请号">{{ 商标[3].split('_')[0] }}</span> <span class="品类">品类: {{ 商标[3].split('_')[1] }}</span>
+                </p>
+                <span class="小类">{{ 商标[4] }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="结果信息">
+        <div class="翻页按钮">
+            <button class="上一页按钮" onclick="changePage(-1)">上一页</button>
+            <span>第 {{ 当前页 | default(1) }} 页 / 共 {{ 总页数 | default(1) }} 页</span>
+            <button class="下一页按钮" onclick="changePage(1)">下一页</button>
+
+            <button class="返回主页按钮" onclick="window.location.href='/'">返回主页</button>
+        </div>
+
+        <div class="返回主页按钮容器">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

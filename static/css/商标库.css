@@ -1,0 +1,418 @@
+/* 基本样式 */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* 切换按钮样式 */
+.切换按钮 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.切换按钮 button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 0 5px;
+    font-weight: 500;
+}
+
+.切换按钮 button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* 表单样式 */
+form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    flex: 1;
+    max-width: 300px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* 商标条目样式 */
+.商标条目 {
+    display: flex;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /* 增加底部填充 */
+    padding: 10px 10px 20px;
+    background-color: #fafafa;
+    transition: all 0.2s;
+    overflow: hidden; /* 防止内容溢出 */
+}
+
+/* 背景容器 hover 效果 */
+.商标条目:hover {
+    transform: scale(1.02);
+    background-color: #f0f0f0; /* 背景颜色变化 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 小类样式 */
+.小类 {
+    display: block; /* 使用block级元素 */
+    overflow: hidden; /* 内容溢出时隐藏 */
+    max-height: 4em; /* 默认高度 */
+    cursor: pointer;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+    padding-bottom: 0; /* 初始状态无底部填充 */
+}
+
+/* 小类展开效果 */
+.商标条目:hover .小类 {
+    max-height: 100em; /* 增加展开后的最大高度 */
+    overflow: visible; /* 允许内容溢出 */
+    padding-bottom: 10px; /* 增加底部填充以增强视觉效果 */
+}
+
+/* 小类展开动画 */
+.商标条目:hover .小类 {
+    animation: expandAnimation 0.3s ease-in-out forwards;
+}
+
+/* 小类收起动画 */
+.商标条目:not(:hover) .小类 {
+    animation: collapseAnimation 0.3s ease-in-out forwards;
+}
+
+
+.商标图 {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 5px;
+    border: 2px solid #007bff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    background-color: #f8f9fa;
+}
+
+.商标图:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3);
+    border-color: #0056b3;
+}
+
+.商标信息 {
+    display: flex;
+    flex-direction: column;
+    color: #555;
+}
+
+.商标信息 h3 {
+    margin: 5px 0;
+    font-weight: 600;
+}
+
+.申请号 {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.品类 {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.备案平台 {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.highlight {
+    background-color: #ffeb3b;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+/* 结果信息样式 */
+.结果信息 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* 翻页按钮样式 */
+.翻页按钮 {
+    position: fixed;
+    top: 50%;
+    bottom: 20px;
+    right: 20px;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    height: 180px;
+}
+
+.翻页按钮 button {
+    padding: 10px 15px;
+
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.翻页按钮 button:hover:not(:disabled) {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.翻页按钮 button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* 返回主页按钮样式 */
+.返回主页按钮容器 {
+    position: fixed;
+    top: calc(50% + 120px);
+    right: 20px;
+    text-align: center;
+}
+
+.返回主页按钮 {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+}
+
+.返回主页按钮:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* 高亮样式 */
+.高亮 {
+    background-color: #ffeb3b;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+.切换按钮 button.选中 {
+    background-color: #007bff; /* 选中状态的背景颜色 */
+    color: white; /* 选中状态的文本颜色 */
+}
+
+.搜索模式-新增商标, .搜索模式-商标, .搜索模式-申请号 {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */ /* 使容器的高度为视口高度 */
+}
+
+.搜索模式-新增商标 form, .搜索模式-商标 form, .搜索模式-申请号 form {
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 左对齐所有表单项 */
+    gap: 20px; /* 每个表单项之间的间距 */
+    padding: 20px; /* 给表单添加一些内边距 */
+    border-radius: 8px; /* 圆角 */
+    background-color: #fff; /* 背景颜色 */
+}
+
+.搜索模式-新增商标 label, .搜索模式-商标 label, .搜索模式-申请号 label {
+    display: inline-block; /* 标签显示在输入框的左边 */
+    width: 100px; /* 设置标签的宽度 */
+    text-align: right; /* 标签文本右对齐 */
+    margin-right: 10px; /* 标签和输入框之间的间距 */
+}
+
+.搜索模式-新增商标 input, .搜索模式-商标 input, .搜索模式-申请号 input {
+    width: 200px; /* 设置输入框的宽度 */
+    padding: 8px;
+}
+
+button {
+    margin-top: 10px; /* 按钮与输入框的间距 */
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+
+/* 商标条目样式 */
+.商标条目 {
+    position: relative; /* 为了让按钮定位到右上角 */
+}
+
+/* 修改按钮样式 */
+.修改按钮 {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.修改按钮:hover {
+    background-color: #0056b3;
+}
+
+/* 弹窗样式 */
+.修改弹窗 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.修改弹窗内容 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+/* 备案平台按钮样式 */
+.备案平台按钮 {
+    margin: 5px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;  /* 默认背景色 */
+    color: #333; /* 未选中时文字颜色 */
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* 给未选中的文字加描边效果 */
+}
+
+.备案平台按钮.已选中 {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* 给选中按钮加深描边 */
+}
+
+.备案平台按钮:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+    border-color: #aaa;
+    color: #777;
+}
+
+
+.备案平台按钮:focus {
+    outline: none;
+    background-color: #d3d3d3; /* 聚焦时背景颜色改为浅灰色 */
+    box-shadow: 0 0 3px 2px rgba(191, 191, 191, 0.5);
+}
+
+
+/* 修改弹窗按钮样式 */
+.修改弹窗 button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.修改弹窗 .关闭弹窗按钮 {
+    background-color: #ccc;
+}
+
+.修改弹窗 .确认修改按钮 {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.更新按钮 {
+    position: absolute;
+    top: 5px;
+    right: 100px;
+    padding: 10px 20px;  /* 增加内边距，使按钮更大 */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;  /* 增大字体 */
+}
+
+.数据更新时间 {
+    font-size: 12px;
+    color: #28a745;  /* 修改为绿色 */
+    margin-top: 10px;
+}

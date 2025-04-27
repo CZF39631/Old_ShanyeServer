@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品查询</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/产品库.css') }}">
+    <script src="{{ url_for('static', filename='js/产品库.js') }}" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>产品查询</h1>
+
+    <div class="搜索区域">
+        <label for="品类">品类:</label>
+        <input type="text" id="品类" name="品类" placeholder="输入品类">
+
+        <label for="品名">品名:</label>
+        <input type="text" id="品名" name="品名" placeholder="输入品名">
+
+        <!-- 修改查询按钮事件绑定，调用产品查询类实例的方法 -->
+        <button onclick="产品查询实例.搜索产品()">查询</button>
+    </div>
+
+    <div id="查询结果"></div>
+
+    <!-- 结果信息容器 -->
+    <div class="结果信息">
+        <!-- 翻页按钮 -->
+        <div class="翻页按钮">
+            <button class="上一页按钮" onclick="产品查询实例.changePage(-1)">上一页</button>
+            <span>第 <span id="当前页">1</span> 页 / 共 <span id="总页数">1</span> 页</span>
+            <button class="下一页按钮" onclick="产品查询实例.changePage(1)">下一页</button>
+        </div>
+
+        <!-- 返回主页按钮 -->
+        <div class="返回主页按钮容器">
+            <button class="返回主页按钮" onclick="window.location.href='/'">返回主页</button>
+        </div>
+    </div>
+</div>
+
+<!-- 放大容器，点击图片后显示 -->
+<div class="放大容器" id="放大容器" style="display: none;" onclick="关闭放大图()">
+    <div class="放大图片容器" onclick="event.stopPropagation()"> <!-- 阻止事件传播 -->
+        <button class="关闭按钮" onclick="关闭放大图()">关闭</button>
+        <img id="放大图片" class="放大图片" src="" alt="放大图片">
+    </div>
+</div>
+
+</body>
+</html>

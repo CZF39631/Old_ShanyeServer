@@ -1,0 +1,61 @@
+/* 全局样式 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex; /* 使用 Flexbox 实现左侧导航栏布局 */
+}
+
+/* 左侧导航栏样式 */
+header {
+    background-color: #2c3e50; /* 导航栏背景色 */
+    color: #ffffff; /* 字体颜色 */
+    width: 200px; /* 导航栏宽度 */
+    height: 100vh; /* 占满页面高度 */
+    position: fixed; /* 固定在页面左侧 */
+    display: flex;
+    flex-direction: column; /* 垂直排列导航项 */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+header nav ul {
+    list-style: none; /* 去掉列表样式 */
+    padding: 0;
+    margin: 0;
+}
+
+header nav ul li {
+    margin-bottom: 15px; /* 导航项间距 */
+}
+
+header nav ul li a {
+    color: #ffffff; /* 链接文字颜色 */
+    text-decoration: none; /* 去掉下划线 */
+    font-size: 16px;
+    transition: color 0.3s; /* 添加鼠标悬停效果 */
+}
+
+header nav ul li a:hover {
+    color: #1abc9c; /* 鼠标悬停时的颜色 */
+}
+
+/* 主内容区域 */
+main {
+    margin-left: 220px; /* 为主内容区域留出导航栏宽度的空间 */
+    padding: 20px;
+    flex: 1; /* 填充剩余空间 */
+    background-color: #ecf0f1; /* 内容背景颜色 */
+    min-height: 100vh; /* 保证内容区高度 */
+    box-sizing: border-box; /* 包含内边距计算宽度 */
+}
+
+/* 页脚样式 */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #34495e; /* 页脚背景色 */
+    color: #ffffff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

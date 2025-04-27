@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>链接库管理系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/链接库.css') }}">
+    <script src="{{ url_for('static', filename='js/链接库.js') }}" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>欢迎使用链接库管理系统</h1>
+
+    <!-- 上传数据部分 -->
+    <section class="section">
+        <h2>上传数据</h2>
+        <div class="drop-area" id="uploadDropArea">
+            拖拽文件到这里
+            <input type="file" name="file" id="fileInput" accept=".xls,.xlsx" required>
+            <div id="uploadFileName" class="file-name"></div>
+        </div>
+        <button id="uploadButton">上传数据</button>
+        <div id="上传信息" class="status-message"></div>
+    </section>
+
+    <!-- 查询数据部分 -->
+    <section class="section">
+        <h2>查询数据</h2>
+        <div class="drop-area" id="queryDropArea">
+            拖拽文件到这里
+            <input type="file" name="file" id="queryFileInput" accept=".xls,.xlsx" required>
+            <div id="queryFileName" class="file-name"></div>
+
+        </div>
+        <button id="queryButton">查询数据</button>
+        <button id="downloadButton" style="display: none;">下载查询结果</button>
+        <div id="查询信息" class="status-message"></div>
+    </section>
+
+    <!-- 根据链接ID查询客户名部分 -->
+    <section class="section">
+        <h2>根据链接ID查询客户名</h2>
+        <input type="text" id="linkIdInput" placeholder="请输入链接ID" required>
+        <button id="queryCustomerButton">查询客户名</button>
+        <div id="customerName"></div>
+    </section>
+</div>
+</body>
+</html>

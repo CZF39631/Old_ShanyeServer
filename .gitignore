@@ -1,0 +1,17 @@
+/APP/数据库
+
+# 排除临时文件、日志、Python缓存
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.tmp
+
+# 排除.idea文件（PyCharm项目配置）
+.idea/
+
+# 排除虚拟环境
+venv/
+
+# 你要排除的其他文件夹
+uploads
