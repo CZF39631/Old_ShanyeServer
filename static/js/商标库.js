@@ -98,25 +98,25 @@ function updateUI(data) {
         const 备案平台 = 商标[5] ? 商标[5] : '未备案';
         const 数据时间 = formatTimestamp(商标[6]);
         const 商标条目 = `
-            <div class="商标条目" data-id="${商标[3]}">
-                <img class="商标图" src="${商标[0]}" alt="${商标[1]}商标图"/>
-                <div class="商标信息">
-                    <h3>${商标[1]}</h3>
-                    <p>申请人: ${商标[2]}</p>
-                    <p>申请号: 
-                        <span class="申请号">${商标[3].split('_')[0]}</span> 
-                        <span class="品类">品类: ${商标[3].split('_')[1]}</span>
-                        <span class="备案平台">备案平台: <span class="平台值">${备案平台}</span></span>
-                    </p>
-                    <span class="小类">${高亮小类(商标[4], 高亮小类关键词)}</span> <!-- 高亮小类 -->
-                            <!-- 数据更新时间显示 -->
-                       <p class="数据更新时间">数据更新时间: ${数据时间}</span></p>
-
-                   
-                    <button class="修改按钮">修改</button> <!-- 修改按钮 -->
-                    <button class="更新按钮">更新数据</button><!-- 更新数据按钮 -->
-                </div>
-            </div>`;
+                <div class="商标条目" data-id="${商标[3]}">
+                    <img class="商标图" src="${商标[0]}" alt="${商标[1]}商标图"/>
+                    <div class="商标信息">
+                        <h3>${商标[1]}</h3>
+                        <p>申请人: ${商标[2]}</p>
+                        <p>申请号: 
+                            <span class="申请号">${商标[3].split('_')[0]}</span> 
+                            <span class="品类">品类: ${商标[3].split('_')[1]}</span>
+                            <span class="备案平台">备案平台: <span class="平台值">${备案平台}</span></span>
+                        </p>
+                        <span class="小类">${高亮小类(商标[4], 高亮小类关键词)}</span> <!-- 高亮小类 -->
+                                <!-- 数据更新时间显示 -->
+                           <p class="数据更新时间">数据更新时间: ${数据时间}</span></p>
+    
+                       
+                        <button class="修改按钮">修改</button> <!-- 修改按钮 -->
+                        <button class="更新按钮">更新数据</button><!-- 更新数据按钮 -->
+                    </div>
+                </div>`;
         resultContainer.innerHTML += 商标条目;
     });
 
@@ -250,13 +250,13 @@ function openModifyModal(商标ID, 当前备案平台) {
     const modal = document.createElement('div');
     modal.classList.add('修改弹窗');
     modal.innerHTML = `
-        <div class="修改弹窗内容">
-            <h2>修改备案平台</h2>
-            <div class="备案平台选择"></div>
-            <button class="确认修改按钮">确认修改</button>
-            <button class="关闭弹窗按钮">关闭</button>
-        </div>
-    `;
+            <div class="修改弹窗内容">
+                <h2>修改备案平台</h2>
+                <div class="备案平台选择"></div>
+                <button class="确认修改按钮">确认修改</button>
+                <button class="关闭弹窗按钮">关闭</button>
+            </div>
+        `;
 
     document.body.appendChild(modal);
 
@@ -440,16 +440,16 @@ function 显示错误信息(信息) {
     const 错误标签 = document.createElement('div');
     错误标签.textContent = 信息;
     错误标签.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background-color: rgba(255, 0, 0, 0.8);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        z-index: 1000;
-        font-size: 14px;
-    `;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            font-size: 14px;
+        `;
     document.body.appendChild(错误标签);
 
     // 3 秒后自动销毁
@@ -459,20 +459,20 @@ function 显示错误信息(信息) {
 }
 
 // 显示成功信息（样式调整）
-function 显示成功信息(信息, 返回값) {
+function 显示成功信息(信息, 返回值) {
     const 成功标签 = document.createElement('div');
-    成功标签.textContent = `${信息} (${JSON.stringify(返回값)})`;
+    成功标签.textContent = `${信息} (${JSON.stringify(返回值)})`;
     成功标签.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background-color: rgba(0, 128, 0, 0.8);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        z-index: 1000;
-        font-size: 14px;
-    `;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 128, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            font-size: 14px;
+        `;
     document.body.appendChild(成功标签);
 
     // 3 秒后自动销毁
