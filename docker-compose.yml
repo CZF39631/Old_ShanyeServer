@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8087:8087"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_APP=启动.py
+      - FLASK_ENV=development
+    command: flask run --host=0.0.0.0 --port=8087
