@@ -12,3 +12,4 @@ services:
       - FLASK_APP=启动.py
       - FLASK_ENV=development
     command: flask run --host=0.0.0.0 --port=8087
+    restart: unless-stopped

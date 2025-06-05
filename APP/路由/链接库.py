@@ -61,7 +61,7 @@ def 链接库查询():
         记录日志("WARNING", "查询链接库数据时未选择文件")
         return jsonify({"message": "没有选择文件"}), 400
 
-    upload_folder = 'uploads'
+    upload_folder = 'uploads_search'
     os.makedirs(upload_folder, exist_ok=True)
     file_path = os.path.join(upload_folder, file.filename)
     file.save(file_path)
