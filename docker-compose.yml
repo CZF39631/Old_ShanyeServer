@@ -8,8 +8,12 @@ services:
       - "8087:8087"
     volumes:
       - .:/app
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+      - ./uploads_search:/app/uploads_search
     environment:
       - FLASK_APP=启动.py
-      - FLASK_ENV=development
-    command: flask run --host=0.0.0.0 --port=8087
+      - FLASK_ENV=production
+      - JWT_SECRET_KEY=your-secret-key-change-in-production
+    command: python 启动.py
     restart: unless-stopped

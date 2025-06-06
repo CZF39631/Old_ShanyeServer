@@ -4,25 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}我的网站{% endblock %}</title>
+    {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% if request.path == url_for('用户.登录页面') %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/登录.css') }}">
+    {% endif %}
+    {% endblock %}
 </head>
-<body>
+<body {% if request.path == url_for('用户.登录页面') %}class="login-page"{% endif %}>
     <!-- 全局导航栏 -->
+    {% if request.path != url_for('用户.登录页面') %}
     <header>
         <nav>
             <ul>
-                <li><a href="{{ url_for('主页') }}">首页</a></li>
-                <li><a href="{{ url_for('链接库') }}">链接库</a></li>
-                <li><a href="{{ url_for('商标库') }}">商标库</a></li>
-                <li><a href="{{ url_for('产品库') }}">产品库</a></li>
-                <li><a href="{{ url_for('关于我们') }}">关于我们</a></li>
+                <li><a href="{{ url_for('导航页.导航页') }}">首页</a></li>
+                <li><a href="{{ url_for('导航页.链接库') }}">链接库</a></li>
+                <li><a href="{{ url_for('导航页.商标库') }}">商标库</a></li>
+                {% if request.cookies.get('access_token_cookie') %}
+                <li><a href="{{ url_for('用户.登出') }}">退出登录</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
+    {% endif %}
 
     <!-- 主内容区域 -->
-    <main>
-        <div class="container">
+    <main {% if request.path == url_for('用户.登录页面') %}class="login-main"{% endif %}>
+        <div class="container {% if request.path == url_for('用户.登录页面') %}login-container-wrapper{% endif %}">
             {% block content %}
             <!-- 子模板将填充这里的内容 -->
             {% endblock %}
@@ -30,9 +38,11 @@
     </main>
 
     <!-- 页脚 -->
+    {% if request.path != url_for('用户.登录页面') %}
     <footer>
-        <p>版权所有 © {{ current_year }} 我的公司</p>
+        <p>版权所有 © 2023 网站后台管理系统</p>
     </footer>
+    {% endif %}
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
