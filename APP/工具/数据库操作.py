@@ -17,6 +17,8 @@ from ..日志.日志 import 记录日志  # 假设有一个日志模块和记录
 def 数据库链接():
     绝对路径 = os.path.abspath(数据库)
     print(f"数据库全路径: {绝对路径}")  # 打印数据库绝对路径
+    # 确保数据库目录存在
+    os.makedirs(os.path.dirname(绝对路径), exist_ok=True)
     数据库链接 = sqlite3.connect(绝对路径)
     return 数据库链接
 
@@ -283,8 +285,36 @@ class 商标数据库操作:
         try:
             self.连接 = 数据库链接()
             self.游标 = self.连接.cursor()
+            self.初始化商标表()  # 初始化商标表
         except sqlite3.Error as e:
             记录日志('ERROR', f"数据库连接错误: {e}")
+
+    def 初始化商标表(self):
+        """初始化小米商标库表"""
+        try:
+            # 检查表是否存在
+            self.游标.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='小米商标库'")
+            表存在 = self.游标.fetchone() is not None
+            
+            if not 表存在:
+                # 创建商标表
+                self.游标.execute('''
+                CREATE TABLE IF NOT EXISTS 小米商标库 (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    商标图链接 TEXT,
+                    商标名 TEXT,
+                    申请人 TEXT,
+                    申请号 TEXT UNIQUE,
+                    未删除小类 TEXT,
+                    备案平台 TEXT,
+                    提交人 TEXT,
+                    提交时间 TEXT
+                )
+                ''')
+                self.连接.commit()
+                记录日志('INFO', "小米商标库表初始化成功")
+        except Exception as e:
+            记录日志('ERROR', f"初始化小米商标库表失败: {e}")
 
     def 获取总数(self, 小类关键字='', 商标名=''):
         try:

@@ -5,9 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商标查询</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/商标库.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="{{ url_for('static', filename='js/商标库.js') }}" defer></script>
+    <style>
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            background-color: #0056b3;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        .top-nav a i {
+            margin-right: 5px;
+        }
+        .top-nav a:hover {
+            text-decoration: underline;
+        }
+        .user-info {
+            margin-right: auto;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        .user-info i {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
+<div class="top-nav">
+    <div class="user-info">
+        <i class="fas fa-user"></i> 当前用户: {{ request.cookies.get('access_token_cookie') and get_jwt_identity() or '未登录' }}
+    </div>
+    <a href="/"><i class="fas fa-home"></i> 返回首页</a>
+    <a href="/登录"><i class="fas fa-sign-in-alt"></i> 返回登录页</a>
+    <a href="/登出"><i class="fas fa-sign-out-alt"></i> 退出登录</a>
+</div>
 <div class="container">
     <h1>商标查询</h1>
 

@@ -5,6 +5,29 @@ body {
     display: flex; /* 使用 Flexbox 实现左侧导航栏布局 */
 }
 
+/* 登录页面特殊样式 */
+body.login-page {
+    display: block;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.login-main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    height: 100vh;
+    width: 100%;
+    background: none;
+}
+
+.login-container-wrapper {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
 /* 左侧导航栏样式 */
 header {
     background-color: #2c3e50; /* 导航栏背景色 */
@@ -58,4 +81,23 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    
+    header {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 10px;
+    }
+    
+    main {
+        margin-left: 0;
+        padding: 15px;
+    }
 }

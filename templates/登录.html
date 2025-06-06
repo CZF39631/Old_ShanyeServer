@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+    (function 检测F12() {
+        const 开始时间 = new Date();
+
+        // 利用debugger阻塞机制，进行时间延迟判断
+        debugger;
+
+        const 结束时间 = new Date();
+
+        if (结束时间 - 开始时间 > 100) {
+            // 开发者工具开启（执行时间被延迟）
+            window.location.href = "https://www.baidu.com";
+        }
+
+        // 每秒循环检测一次
+        setTimeout(检测F12, 1000);
+    })();
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理系统登录</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/登录.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="{{ url_for('static', filename='js/登录.min.js') }}"></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="login-container">
+            <div class="login-box">
+                <h1>后台管理系统</h1>
+                
+                <div id="login-error" class="alert" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="error-message"></span>
+                </div>
+                
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <div class="alert">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {% for message in messages %}
+                          {{ message }}
+                        {% endfor %}
+                    </div>
+                  {% endif %}
+                {% endwith %}
+                
+                <form id="login-form" method="post" action="{{ url_for('用户.登录页面') }}">
+                    <input type="hidden" name="next" value="{{ next }}" id="next-page">
+                    <input type="hidden" name="password_hash" id="password-hash">
+                    
+                    <div class="form-group">
+                        <label for="username"><i class="fas fa-user"></i> 用户名</label>
+                        <input type="text" id="username" name="username" placeholder="请输入用户名" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> 密码</label>
+                        <input type="password" id="password" name="password" placeholder="请输入密码" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-login">
+                            <i class="fas fa-sign-in-alt"></i> 登录系统
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="footer">
+                <p>版权所有 © 2023 网站后台管理系统</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html> 
